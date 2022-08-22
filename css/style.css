@@ -1,0 +1,86 @@
+/* Import roboto */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
+/* Create a body style with responsive layout */
+*{
+    transition: .5s;
+}
+
+body {
+    /* Font family:roboto */
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: white;
+    background-color: black;
+}
+
+/* Create a header style with space between */
+.header {
+    align-items: center;
+    padding: 0px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    width: 100%;
+    border: 0px;
+    margin: 0px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    /* Delete the effect after clicking */
+}
+
+.header .h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header .h1 h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0px;
+    padding-right: 15px;
+}
+
+.header .h1 h1:hover {
+    color: #f1c40f;
+}
+
+header .h1 #fa-python {
+    font-size: 5em;
+}
+
+h1, h2{
+    cursor: pointer;
+}
+
+/* Class sign with display flex*/
+.sign {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign h2{
+    font-size: 2em;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.sign h2:hover{
+    color: rgb(119, 193, 212);
+    font-size: 2.2em;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.sign #fa-spider{
+    font-size: 2em;
+    color: white;
+}
