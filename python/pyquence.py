@@ -20,12 +20,16 @@ def factorize(equation):
     # Return the roots
     return roots
 
-# Create a def main and prove the roots works
-def main():
-    x = sp.Symbol('x')
-    print(roots("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
-    print(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+# Create a method to extract the grade of the equation
+def grade(equation):
+    # Create a variable for the equation
+    eq = sp.sympify(equation)
+    # Create a variable for the roots
+    grade = eq.as_poly().degree()
+    # Return the roots
+    return grade
 
+# Final sum of the equation
 def finalSum(nrd, mj, rootlist):
     n= sp.Symbol('n', real=True)
     pyquation=""
@@ -39,7 +43,15 @@ def finalSum(nrd, mj, rootlist):
         equation="+("
     pyquationS = sp.sympify(pyquation)
     return pyquationS
-            
+
+# Create a def main and prove the roots works
+def main():
+    x = sp.Symbol('x')
+    print(roots("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+    print(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+    print(grade("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+    print(grade(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
+         
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
