@@ -81,3 +81,46 @@ h1, h2{
     font-size: 2em;
     color: white;
 }
+
+.mquote{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-left: 10px;
+    /* Italic*/
+    text-align: center;
+}
+
+.mquote h1:hover{
+    color: rgb(119, 193, 212);
+}
+
+.mquote p:hover{
+    color: rgb(119, 193, 212);
+}
+
+
+.mquote h1{
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    border: 0px;
+    transition: .5s ease-in;
+    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mquote h1:hover{
+    font-size: 2.5em;
+}
+
+p.abstract{
+    /* font-size: 1.5em; */
+    font-weight: bold;
+    padding-left: 10px;
+    /* Italic*/
+    font-style: italic;
+    text-align: center;
+}
+
+
