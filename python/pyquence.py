@@ -20,6 +20,7 @@ def factorize(equation):
 
 # Create a def main and prove the roots works
 def main():
+    x = sp.Symbol('x')
     print(roots("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
     print(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
 
@@ -27,7 +28,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-
-
+# End of file.
