@@ -15,7 +15,7 @@ def roots(equation):
 def factorize(equation):
     # Create a variable for the equation
     eq = sp.sympify(equation)
-    # Create a variable for the roots
+    # Create a variable for the factors
     roots = sp.factor(eq)
     # Return the roots
     return roots
@@ -53,7 +53,7 @@ def splitEquation(equation):
     # Return the terms
     return terms
 
-# Create a def main and prove the roots works
+# Create a def main and prove the functions works
 def main():
     x = sp.Symbol('x')
     print(roots("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
