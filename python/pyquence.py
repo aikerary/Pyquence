@@ -29,6 +29,15 @@ def grade(equation):
     # Return the roots
     return grade
 
+# Split the equation into a list of terms
+def splitEquation(equation):
+    # Create a variable for the equation
+    eq = sp.sympify(equation)
+    # Create a variable for the terms
+    terms = eq.as_ordered_factors()
+    # Return the terms
+    return terms
+
 # Final sum of the equation
 def finalSum(nrd, mj, rootlist):
     n= sp.Symbol('n', real=True)
@@ -44,14 +53,23 @@ def finalSum(nrd, mj, rootlist):
     pyquationS = sp.sympify(pyquation)
     return pyquationS
 
-# Split the equation into a list of terms
-def splitEquation(equation):
-    # Create a variable for the equation
-    eq = sp.sympify(equation)
-    # Create a variable for the terms
-    terms = eq.as_ordered_factors()
-    # Return the terms
-    return terms
+# Solve a linear system of equations
+def solveLinearSystem(equations):
+    # Create a variable for the equations
+    eq = equations
+    # Create a variable for the solutions
+    solutions = sp.linsolve(eq)
+    # Return the solutions
+    return solutions
+
+# Solve a non linear system of equations
+def solveNonLinearSystem(equations):
+    # Create a variable for the equations
+    eq = equations
+    # Create a variable for the solutions
+    solutions = sp.nonlinsolve(eq)
+    # Return the solutions
+    return solutions
 
 # Create a def main and prove the functions works
 def main():
@@ -61,7 +79,6 @@ def main():
     print(grade("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
     print(grade(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
     print(splitEquation(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
-         
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
