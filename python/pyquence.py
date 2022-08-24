@@ -24,7 +24,7 @@ def factorize(equation):
 def grade(equation):
     # Create a variable for the equation
     eq = sp.sympify(equation)
-    # Create a variable for the roots
+    # Create a variable for the grade
     grade = eq.as_poly().degree()
     # Return the roots
     return grade
@@ -44,6 +44,15 @@ def finalSum(nrd, mj, rootlist):
     pyquationS = sp.sympify(pyquation)
     return pyquationS
 
+# Split the equation into a list of terms
+def splitEquation(equation):
+    # Create a variable for the equation
+    eq = sp.sympify(equation)
+    # Create a variable for the terms
+    terms = eq.as_ordered_factors()
+    # Return the terms
+    return terms
+
 # Create a def main and prove the roots works
 def main():
     x = sp.Symbol('x')
@@ -51,6 +60,7 @@ def main():
     print(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
     print(grade("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
     print(grade(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
+    print(splitEquation(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
          
 
 # If the file is run directly, run the main function.
