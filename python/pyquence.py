@@ -71,6 +71,29 @@ def solveNonLinearSystem(equations):
     # Return the solutions
     return solutions
 
+# Factorize an equation and then split it
+def splitE(equation):
+    # Create a variable for the equation
+    eq = sp.sympify(equation)
+    # Create a variable for the terms
+    eq= sp.factor(eq)
+    terms = eq.as_ordered_factors()
+    # Return the terms
+    return terms
+
+def resort(list1, list2):
+    auxiliar1=sorted(list1)
+    print(list1)
+    auxiliar2=[]
+    # Equals the auxliar2 to the list2
+    for i in range(len(list2)):
+        auxiliar2.append(list2[i])
+    # Sort a list and then resort the other using the indexes of the first one
+    for i in range(len(list1)):
+        auxiliar2[i]=list2[auxiliar1.index(list1[i])]
+    return[auxiliar1, auxiliar2]
+
+
 # Create a def main and prove the functions works
 def main():
     x = sp.Symbol('x')
@@ -79,6 +102,9 @@ def main():
     print(grade("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
     print(grade(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
     print(splitEquation(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
+    print(splitE("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+    print(resort([3, 2, 1], ["aiker", "tatiana", "diana"]))
+
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
