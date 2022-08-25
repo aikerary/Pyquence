@@ -83,16 +83,14 @@ def splitE(equation):
 
 def resort(list1, list2):
     auxiliar1=sorted(list1)
-    print(list1)
     auxiliar2=[]
     # Equals the auxliar2 to the list2
     for i in range(len(list2)):
         auxiliar2.append(list2[i])
     # Sort a list and then resort the other using the indexes of the first one
     for i in range(len(list1)):
-        auxiliar2[i]=list2[auxiliar1.index(list1[i])]
+        auxiliar2[i]=list2[list1.index(auxiliar1[i])]
     return[auxiliar1, auxiliar2]
-
 
 # Create a def main and prove the functions works
 def main():
