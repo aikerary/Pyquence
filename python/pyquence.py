@@ -94,13 +94,14 @@ def resort(list1, list2):
 
 # Create a def main and prove the functions works
 def main():
+    equation = "x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"
     x = sp.Symbol('x')
-    print(roots("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
-    print(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
-    print(grade("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
-    print(grade(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
-    print(splitEquation(factorize("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x")))
-    print(splitE("x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"))
+    print(roots(equation))
+    print(factorize(equation))
+    print(grade(equation))
+    print(grade(factorize(equation)))
+    print(splitEquation(factorize(equation)))
+    print(splitE(equation))
     print(resort([3, 2, 1], ["aiker", "tatiana", "diana"]))
 
 
