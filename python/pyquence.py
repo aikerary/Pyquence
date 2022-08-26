@@ -1,6 +1,8 @@
 from numbers import Real
 import sympy as sp
 import re
+from sympy.polys.monomials import itermonomials
+from sympy.polys.orderings import monomial_key
 
 # Create a function using sympy for extract the roots of an equation
 def roots(equation):
@@ -90,6 +92,7 @@ def resort(list1, list2):
     # Sort a list and then resort the other using the indexes of the first one
     for i in range(len(list1)):
         auxiliar2[i]=list2[list1.index(auxiliar1[i])]
+        list1[list1.index(auxiliar1[i])]=0
     return[auxiliar1, auxiliar2]
 
 # Create a def main and prove the functions works
@@ -113,7 +116,6 @@ def gradesOf(equation):
         listOfGrades.append(listOfEquations[i].as_poly().degree())
     matrix = resort(listOfGrades, listOfEquations)
     return [matrix]
-
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
