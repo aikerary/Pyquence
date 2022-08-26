@@ -103,6 +103,16 @@ def main():
     print(splitEquation(factorize(equation)))
     print(splitE(equation))
     print(resort([3, 2, 1], ["aiker", "tatiana", "diana"]))
+    print(gradesOf(equation))
+
+# Using a for loop
+def gradesOf(equation):
+    listOfEquations = splitE(equation)
+    listOfGrades = []
+    for i in range(len(listOfEquations)):
+        listOfGrades.append(listOfEquations[i].as_poly().degree())
+    matrix = resort(listOfGrades, listOfEquations)
+    return [matrix]
 
 
 # If the file is run directly, run the main function.
