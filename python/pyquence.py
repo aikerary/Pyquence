@@ -105,7 +105,6 @@ def main():
     print(grade(factorize(equation)))
     print(splitEquation(factorize(equation)))
     print(splitE(equation))
-    print(resort([3, 2, 1], ["aiker", "tatiana", "diana"]))
     print(gradesOf(equation))
 
 # Using a for loop
@@ -116,6 +115,13 @@ def gradesOf(equation):
         listOfGrades.append(listOfEquations[i].as_poly().degree())
     matrix = resort(listOfGrades, listOfEquations)
     return [matrix]
+
+# Create a function that takes a list of numbers and then fill a list with numbers from 0 to this numbers using a for
+def fillList(numbers):
+    list = []
+    for n in numbers:
+        list.append(n-1)
+    return list
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
