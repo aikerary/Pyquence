@@ -169,14 +169,13 @@ def main():
       eq= poly(equation)
     else:
       eq= equation
-    lista=gradesOf(eq)
-    lista2=defRoots(lista)
-    lista.append(lista2)
-    print(lista)
-    initialConditions= len(symbols(alphabet(lista[0])))
-    print(initialConditions)
-    print(finalSumix(lista, symbols(alphabet(lista[0]))))
-    forEvaluated= finalSumix(lista, symbols(alphabet(lista[0])))
+    aryMatrix=gradesOf(eq)
+    aryMatrix2=defRoots(aryMatrix)
+    aryMatrix.append(aryMatrix2)
+    print(aryMatrix)
+    initialConditions= len(symbols(alphabet(aryMatrix[0])))
+    print(finalSumix(aryMatrix, symbols(alphabet(aryMatrix[0]))))
+    forEvaluated= finalSumix(aryMatrix, symbols(alphabet(aryMatrix[0])))
     start=int(input("Enter the starting iteration: "))
     conditions=[]
     while len(conditions)<initialConditions:
@@ -185,7 +184,7 @@ def main():
     print(evaluate(initialConditions,forEvaluated, start))
     systemix= systemConstruction(evaluate(initialConditions,forEvaluated, start),conditions)
     print(systemix)
-    solutions=SolveSystem(systemix, symbols(alphabet(lista[0])))
+    solutions=SolveSystem(systemix, symbols(alphabet(aryMatrix[0])))
     print(solutions)
     finalExpresion= factorize(forEvaluated.subs(solutions))
     print(finalExpresion)
