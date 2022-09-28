@@ -1,4 +1,5 @@
 from numbers import Real
+from os import system
 import sympy as sp
 import re
 from sympy.polys.monomials import itermonomials
@@ -146,6 +147,20 @@ def evaluate(number, eq):
     # Return the list
     return evaluated
 
+# Construct the system
+def systemConstruction(listOfEquations, listOfConditions):
+    y=0
+    listOfEquationsDef=[]
+    for equation in listOfEquations:
+        equation = equation - listOfConditions[y]
+        listOfEquationsDef.append(equation)
+        y+=1
+    return listOfEquationsDef
+
+# Solve the system
+def SolveSystem(listOfEquations, listOfSymbols):
+    return sp.solve(listOfEquations, listOfSymbols)
+
 # Create a def main and prove the functions works
 def main():
     x = sp.Symbol('x', real=True)
@@ -169,9 +184,14 @@ def main():
     print(finalSumix(lista, symbols(alphabet(lista[0]))))
     forEvaluated= finalSumix(lista, symbols(alphabet(lista[0])))
     print(evaluate(initialConditions,forEvaluated))
+    systemix= systemConstruction(evaluate(initialConditions,forEvaluated),[1, -2, 3])
+    print(systemix)
+    print(SolveSystem(systemix, symbols(alphabet(lista[0]))))
+
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
     main()
+
 
 # End of file.
