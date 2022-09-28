@@ -167,6 +167,7 @@ def main():
     n= sp.Symbol('n', real=True)
     # equation = x**6+8.5*x**5+29*x**4+50.5*x**3+47*x**2+22*x+4
     equation= [1, 17/2, 29, 101/2, 47, 22, 4]
+    equation= [1, -4, 4]
     if type(equation) == list:
       eq= poly(equation)
     else:
@@ -184,9 +185,13 @@ def main():
     print(finalSumix(lista, symbols(alphabet(lista[0]))))
     forEvaluated= finalSumix(lista, symbols(alphabet(lista[0])))
     print(evaluate(initialConditions,forEvaluated))
-    systemix= systemConstruction(evaluate(initialConditions,forEvaluated),[1, -2, 3])
+    systemix= systemConstruction(evaluate(initialConditions,forEvaluated),[1, 1])
     print(systemix)
-    print(SolveSystem(systemix, symbols(alphabet(lista[0]))))
+    solutions=SolveSystem(systemix, symbols(alphabet(lista[0])))
+    print(solutions)
+    finalExpresion= forEvaluated.subs(solutions)
+    print(finalExpresion)
+    print(factorize(finalExpresion))
 
 
 # If the file is run directly, run the main function.
