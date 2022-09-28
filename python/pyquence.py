@@ -180,11 +180,7 @@ def main():
     lista=gradesOf(eq)
     lista2=defRoots(lista)
     lista.append(lista2)
-    # print(repeat_list(lista))
     print(lista)
-    # print(defRoots(lista))
-    # print(symbols(alphabet(lista[0])))
-    # print(symbols(alphabet(lista[0]))[0])
     initialConditions= len(symbols(alphabet(lista[0])))
     print(initialConditions)
     print(finalSumix(lista, symbols(alphabet(lista[0]))))
@@ -196,7 +192,6 @@ def main():
     print(solutions)
     finalExpresion= factorize(forEvaluated.subs(solutions))
     print(finalExpresion)
-    # Print finalExpresion as latex
     print(sp.latex(finalExpresion))
     display(Latex(sp.latex(finalExpresion)))
 
