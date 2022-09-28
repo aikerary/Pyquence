@@ -45,9 +45,11 @@ def finalSumix(aryMatrix, symbols):
     listOfGrades= aryMatrix[0]
     listOfRoots= aryMatrix[2]
     equation=0*n
+    h=0
     for i in range (len(listOfGrades)):
         for j in range (listOfGrades[i]):
-            equation+=(symbols[j]*(n**(j)))*(listOfRoots[i]**n)
+            equation+=(symbols[h]*(n**(j)))*(listOfRoots[i]**n)
+            h+=1
     return equation
 
 def resort(list1, list2):
@@ -117,7 +119,8 @@ def alpha(n):
 # returns a list of the first n numbers of the alphabet
 def alphabet(lst):
     # Create a variable for the maximum number
-    maximum = max(lst)
+    # Maximum equals the sum of all the numbers in the list
+    maximum = sum(lst)
     # Create a variable for the alphabet
     alphabet= alpha(maximum)
     # Return the alphabet
@@ -169,7 +172,7 @@ def main():
     n= sp.Symbol('n', real=True)
     # equation = x**6+8.5*x**5+29*x**4+50.5*x**3+47*x**2+22*x+4
     equation= [1, 17/2, 29, 101/2, 47, 22, 4]
-    equation= [1, -4, 4]
+    equation= [1, -1, -2]
     if type(equation) == list:
       eq= poly(equation)
     else:
