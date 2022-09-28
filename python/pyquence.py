@@ -89,14 +89,6 @@ def defRoots(matrix):
       listOfSolves.append(roots(matrix[1][i])[0])
     return listOfSolves
 
-# Method for repeating the roots
-# def repeat_list(lst):
-#     new_list = []
-#     for i in range(len(lst[0])):
-#         for j in range(lst[0][i]):
-#             new_list.append(lst[2][i])
-#     return new_list
-
 # Convert a vector to poly
 def poly(lst):
     lst= lst[::-1]
@@ -115,7 +107,7 @@ def alpha(n):
     # Return the list
     return alphabet
 
-# Create a function that receives a list of numbers, then takes the maximum number and
+# Create a function that receives a list of numbers, then takes the sum number and
 # returns a list of the first n numbers of the alphabet
 def alphabet(lst):
     # Create a variable for the maximum number
@@ -141,14 +133,14 @@ def symbols(lst):
 
 # Create a function that takes a list of numbers, and a sympy equation and returns a list
 # of the different equations evaluated in each number
-def evaluate(number, eq):
+def evaluate(number, eq, start):
     n= sp.Symbol('n', real=True)
     # Create a list for the evaluated equations
     evaluated = []
     # Create a for loop to run through the list
     for i in range(number):
         # Append the evaluated equation to the list
-        evaluated.append(eq.subs(n, i))
+        evaluated.append(eq.subs(n, i+start))
     # Return the list
     return evaluated
 
@@ -171,8 +163,8 @@ def main():
     x = sp.Symbol('x', real=True)
     n= sp.Symbol('n', real=True)
     # equation = x**6+8.5*x**5+29*x**4+50.5*x**3+47*x**2+22*x+4
-    equation= [1, 17/2, 29, 101/2, 47, 22, 4]
-    equation= [1, -1, -2]
+    # equation= [1, 17/2, 29, 101/2, 47, 22, 4]
+    equation= [1, -4, 3]
     if type(equation) == list:
       eq= poly(equation)
     else:
@@ -185,8 +177,8 @@ def main():
     print(initialConditions)
     print(finalSumix(lista, symbols(alphabet(lista[0]))))
     forEvaluated= finalSumix(lista, symbols(alphabet(lista[0])))
-    print(evaluate(initialConditions,forEvaluated))
-    systemix= systemConstruction(evaluate(initialConditions,forEvaluated),[1, 1])
+    print(evaluate(initialConditions,forEvaluated, 1))
+    systemix= systemConstruction(evaluate(initialConditions,forEvaluated, 1),[2, 5])
     print(systemix)
     solutions=SolveSystem(systemix, symbols(alphabet(lista[0])))
     print(solutions)
