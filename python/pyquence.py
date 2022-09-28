@@ -109,16 +109,19 @@ def poly(lst):
 
 # Create a def main and prove the functions works
 def main():
-    equation = "(2+x)**3 *(x+1)**2* (x+0.5)"
-    x = sp.Symbol('x')
-    print(roots(equation))
-    print(factorize(equation))
-    print(grade(equation))
-    print(grade(factorize(equation)))
-    print(splitEquation(factorize(equation)))
-    print(splitE(equation))
-    print(gradesOf(equation))
-    #  Capture a string named equation
+    x = sp.Symbol('x', real=True)
+    # equation = x**6+8.5*x**5+29*x**4+50.5*x**3+47*x**2+22*x+4
+    equation= [1, 17/2, 29, 101/2, 47, 22, 4]
+    if type(equation) == list:
+      eq= poly(equation)
+    else:
+      eq= equation
+    lista=gradesOf(eq)
+    lista2=defRoots(lista)
+    lista.append(lista2)
+    print(repeat_list(lista))
+    print(lista)
+    print(defRoots(lista))
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
