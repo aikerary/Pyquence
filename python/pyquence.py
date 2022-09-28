@@ -107,6 +107,41 @@ def poly(lst):
     x = sp.Symbol('x')
     return sum([lst[i] * x**i for i in range(len(lst))])
 
+# Create a function that takes a integer as a parameter and returns a list of the first n
+# letters of the alphabet
+def alpha(n):
+    # Create a list for the alphabet
+    alphabet = []
+    # Create a for loop to run through the alphabet
+    for i in range(n):
+        # Append the letter to the list
+        alphabet.append(chr(i+97))
+    # Return the list
+    return alphabet
+
+# Create a function that receives a list of numbers, then takes the maximum number and
+# returns a list of the first n numbers of the alphabet
+def alphabet(lst):
+    # Create a variable for the maximum number
+    maximum = max(lst)
+    # Create a variable for the alphabet
+    alphabet= alpha(maximum)
+    # Return the alphabet
+    return alphabet
+
+# Create a function that receives a list of letters and create symbols for each one
+def symbols(lst):
+    # Create a list for the symbols
+    symbols = []
+    # Create a for loop to run through the list
+    for i in range(len(lst)):
+        # Create a variable for the symbol
+        symbol = sp.Symbol(lst[i], real=True)
+        # Append the symbol to the list
+        symbols.append(symbol)
+    # Return the list
+    return symbols
+
 # Create a def main and prove the functions works
 def main():
     x = sp.Symbol('x', real=True)
@@ -122,6 +157,26 @@ def main():
     print(repeat_list(lista))
     print(lista)
     print(defRoots(lista))
+    print(symbols(alphabet(lista[0])))
+    print(symbols(alphabet(lista[0]))[0])
+    print(finalSumix(lista, symbols(alphabet(lista[0]))))
+    # Factorize the finalSumix
+    print(factorize(finalSumix(lista, symbols(alphabet(lista[0])))))
+
+
+# aryMatrix= List of lists containing grades(index 0),  equations(index 1), and roots(index 2)
+# repeatedRoots= List of repeated roots in the same order as the grades
+# Symbols= List of the max number of symbols for the roots
+def finalSumix(aryMatrix, symbols):
+    n= sp.Symbol('n', real=True)
+    listOfGrades= aryMatrix[0]
+    listOfRoots= aryMatrix[2]
+    equation=0*n
+    for i in range (len(listOfGrades)):
+        for j in range (listOfGrades[i]):
+            equation+=(symbols[j]*(n**(j)))*(listOfRoots[i]**n)
+    return equation
+
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
