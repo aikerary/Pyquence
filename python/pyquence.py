@@ -4,6 +4,8 @@ import sympy as sp
 import re
 from sympy.polys.monomials import itermonomials
 from sympy.polys.orderings import monomial_key
+from IPython.display import display, Latex
+
 
 # Create a function using sympy for extract the roots of an equation
 def roots(eq):
@@ -189,9 +191,11 @@ def main():
     print(systemix)
     solutions=SolveSystem(systemix, symbols(alphabet(lista[0])))
     print(solutions)
-    finalExpresion= forEvaluated.subs(solutions)
+    finalExpresion= factorize(forEvaluated.subs(solutions))
     print(finalExpresion)
-    print(factorize(finalExpresion))
+    # Print finalExpresion as latex
+    print(sp.latex(finalExpresion))
+    display(Latex(sp.latex(finalExpresion)))
 
 
 # If the file is run directly, run the main function.
