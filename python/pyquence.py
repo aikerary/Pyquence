@@ -5,36 +5,37 @@ from sympy.polys.monomials import itermonomials
 from sympy.polys.orderings import monomial_key
 
 # Create a function using sympy for extract the roots of an equation
-def roots(equation):
-    # Create a variable for the equation
-    eq = sp.sympify(equation)
+def roots(eq):
     # Create a variable for the roots
     roots = sp.solve(eq)
     # Return the roots
     return roots
 
 # Create a function to factorize a polynomial equation
-def factorize(equation):
-    # Create a variable for the equation
-    eq = sp.sympify(equation)
+def factorize(eq):
     # Create a variable for the factors
-    roots = sp.factor(eq)
-    # Return the roots
-    return roots
+    factors = sp.factor(eq)
+    # Return the factors
+    return factors
 
 # Create a method to extract the grade of the equation
-def grade(equation):
-    # Create a variable for the equation
-    eq = sp.sympify(equation)
+def grade(eq):
     # Create a variable for the grade
     grade = eq.as_poly().degree()
     # Return the roots
     return grade
 
 # Split the equation into a list of terms
-def splitEquation(equation):
+def splitEquation(eq):
+    # Create a variable for the terms
+    terms = eq.as_ordered_factors()
+    # Return the terms
+    return terms
+    
+# Factorize an equation and then split it
+def splitE(eq):
     # Create a variable for the equation
-    eq = sp.sympify(equation)
+    eq= sp.factor(eq)
     # Create a variable for the terms
     terms = eq.as_ordered_factors()
     # Return the terms
@@ -55,34 +56,6 @@ def finalSum(nrd, mj, rootlist):
     pyquationS = sp.sympify(pyquation)
     return pyquationS
 
-# Solve a linear system of equations
-def solveLinearSystem(equations):
-    # Create a variable for the equations
-    eq = equations
-    # Create a variable for the solutions
-    solutions = sp.linsolve(eq)
-    # Return the solutions
-    return solutions
-
-# Solve a non linear system of equations
-def solveNonLinearSystem(equations):
-    # Create a variable for the equations
-    eq = equations
-    # Create a variable for the solutions
-    solutions = sp.nonlinsolve(eq)
-    # Return the solutions
-    return solutions
-
-# Factorize an equation and then split it
-def splitE(equation):
-    # Create a variable for the equation
-    eq = sp.sympify(equation)
-    # Create a variable for the terms
-    eq= sp.factor(eq)
-    terms = eq.as_ordered_factors()
-    # Return the terms
-    return terms
-
 def resort(list1, list2):
     auxiliar1=sorted(list1)
     auxiliar2=[]
@@ -95,9 +68,48 @@ def resort(list1, list2):
         list1[list1.index(auxiliar1[i])]=0
     return[auxiliar1, auxiliar2]
 
+# Using a for loop
+def gradesOf(equation):
+    listOfEquationsPartial= splitE(equation)
+    listOfEquations= test(listOfEquationsPartial)
+    listOfGrades = []
+    for i in range(len(listOfEquations)):
+        listOfGrades.append(listOfEquations[i].as_poly().degree())
+    matrix = resort(listOfGrades, listOfEquations)
+    return matrix
+
+# Removing number factors
+def test(list):
+    new_list = []
+    for i in list:
+        if type(i) != sp.core.numbers.Float:
+            new_list.append(i)
+    return new_list
+
+# Method for extracting the roots
+def defRoots(matrix):
+    listOfSolves=[]
+    for i in range(len(matrix[1])):
+      listOfSolves.append(roots(matrix[1][i])[0])
+    return listOfSolves
+
+# Method for repeating the roots
+def repeat_list(lst):
+    new_list = []
+    for i in range(len(lst[0])):
+        for j in range(lst[0][i]):
+            new_list.append(lst[2][i])
+    return new_list
+
+# Convert a vector to poly
+def poly(lst):
+    lst= lst[::-1]
+    x = sp.Symbol('x')
+    return sum([lst[i] * x**i for i in range(len(lst))])
+
 # Create a def main and prove the functions works
 def main():
-    equation = "x**7-10*x**6+28*x**5+30*x**4-297*x**3+540*x**2-324*x"
+    equation = "(2+x)**3 *(x+1)**2* (x+0.5)"
     x = sp.Symbol('x')
     print(roots(equation))
     print(factorize(equation))
@@ -106,22 +118,7 @@ def main():
     print(splitEquation(factorize(equation)))
     print(splitE(equation))
     print(gradesOf(equation))
-
-# Using a for loop
-def gradesOf(equation):
-    listOfEquations = splitE(equation)
-    listOfGrades = []
-    for i in range(len(listOfEquations)):
-        listOfGrades.append(listOfEquations[i].as_poly().degree())
-    matrix = resort(listOfGrades, listOfEquations)
-    return [matrix]
-
-# Create a function that takes a list of numbers and then fill a list with numbers from 0 to this numbers using a for
-def fillList(numbers):
-    list = []
-    for n in numbers:
-        list.append(n-1)
-    return list
+    #  Capture a string named equation
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
