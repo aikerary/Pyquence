@@ -41,20 +41,18 @@ def splitE(eq):
     # Return the terms
     return terms
 
-# Final sum of the equation
-def finalSum(nrd, mj, rootlist):
+# aryMatrix= List of lists containing grades(index 0),  equations(index 1), and roots(index 2)
+# repeatedRoots= List of repeated roots in the same order as the grades
+# Symbols= List of the max number of symbols for the roots
+def finalSumix(aryMatrix, symbols):
     n= sp.Symbol('n', real=True)
-    pyquation=""
-    equation = "("
-    bstring = "b"
-    for j in range(nrd):
-        for i in range(mj):
-            equation+="+b_"+str(i+mj-1)+"n**"+str(i-1)
-        equation+=")"+rootlist[j]+"**n"
-        pyquation+=equation
-        equation="+("
-    pyquationS = sp.sympify(pyquation)
-    return pyquationS
+    listOfGrades= aryMatrix[0]
+    listOfRoots= aryMatrix[2]
+    equation=0*n
+    for i in range (len(listOfGrades)):
+        for j in range (listOfGrades[i]):
+            equation+=(symbols[j]*(n**(j)))*(listOfRoots[i]**n)
+    return equation
 
 def resort(list1, list2):
     auxiliar1=sorted(list1)
@@ -162,20 +160,6 @@ def main():
     print(finalSumix(lista, symbols(alphabet(lista[0]))))
     # Factorize the finalSumix
     print(factorize(finalSumix(lista, symbols(alphabet(lista[0])))))
-
-
-# aryMatrix= List of lists containing grades(index 0),  equations(index 1), and roots(index 2)
-# repeatedRoots= List of repeated roots in the same order as the grades
-# Symbols= List of the max number of symbols for the roots
-def finalSumix(aryMatrix, symbols):
-    n= sp.Symbol('n', real=True)
-    listOfGrades= aryMatrix[0]
-    listOfRoots= aryMatrix[2]
-    equation=0*n
-    for i in range (len(listOfGrades)):
-        for j in range (listOfGrades[i]):
-            equation+=(symbols[j]*(n**(j)))*(listOfRoots[i]**n)
-    return equation
 
 
 # If the file is run directly, run the main function.
