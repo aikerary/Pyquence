@@ -1,5 +1,6 @@
 from numbers import Real
 from os import system
+import string
 import sympy as sp
 import re
 from sympy.polys.monomials import itermonomials
@@ -160,15 +161,20 @@ def SolveSystem(listOfEquations, listOfSymbols):
 
 # Create a def main and prove the functions works
 def main():
-    x = sp.Symbol('x', real=True)
     n= sp.Symbol('n', real=True)
     # equation = x**6+8.5*x**5+29*x**4+50.5*x**3+47*x**2+22*x+4
     # equation= [1, 17/2, 29, 101/2, 47, 22, 4]
     equation= [1, -9, 26, -24]
-    if type(equation) == list:
-      eq= poly(equation)
+    equation= input("Enter the equation: ")
+    if equation[0] == "[":
+        equationIx= list(map(float,equation.strip("[").strip("]").split(",")))
+    # If there is no float then parse to int
+        for i in range(len(equationIx)):
+            if equationIx[i].is_integer():
+                equationIx[i]= int(equationIx[i])
+        eq= poly(equationIx)
     else:
-      eq= equation
+        eq= sp.sympify(equation)
     aryMatrix=gradesOf(eq)
     aryMatrix2=defRoots(aryMatrix)
     aryMatrix.append(aryMatrix2)
@@ -179,7 +185,11 @@ def main():
     start=int(input("Enter the starting iteration: "))
     conditions=[]
     while len(conditions)<initialConditions:
-        conditions= list(map(int,input("\nEnter the initial conditions : ").strip().split()))[:initialConditions]
+        conditionIx= input("Enter the "+str(initialConditions) +" conditions: ")
+        conditions= list(map(float,conditionIx.strip("[").strip("]").split(",")))
+        for i in range(len(conditions)):
+            if conditions[i].is_integer():
+                conditions[i]= int(conditions[i])
     # conditions= [2, 3, 4]
     print(evaluate(initialConditions,forEvaluated, start))
     systemix= systemConstruction(evaluate(initialConditions,forEvaluated, start),conditions)
@@ -190,7 +200,6 @@ def main():
     print(finalExpresion)
     print(sp.latex(finalExpresion))
     display(Latex(sp.latex(finalExpresion)))
-
 
 # If the file is run directly, run the main function.
 if __name__ == "__main__":
